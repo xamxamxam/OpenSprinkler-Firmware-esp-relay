@@ -14,3 +14,5 @@ https://openthings.freshdesk.com/support/solutions/articles/5000631599-installin
 Questions and comments:
 http://www.opensprinkler.com
 ============================================
+
+Nodemcu opensplinker with 4 gpio relays 
