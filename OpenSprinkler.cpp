@@ -71,6 +71,7 @@ extern char tmp_buffer[];
 extern char ether_buffer[];
 
 #if defined(ESP8266)
+byte station_pins[8] ={0x02,0x0C , 0x0D,0x0E, 0x00,0x00,0x00,0x00};
 	SSD1306Display OpenSprinkler::lcd(0x3c, SDA, SCL);
 	byte OpenSprinkler::state = OS_STATE_INITIAL;
 	byte OpenSprinkler::prev_station_bits[MAX_NUM_BOARDS];
@@ -1084,6 +1085,38 @@ void OpenSprinkler::apply_all_station_bits() {
 	}
 		
 	byte bid, s, sbits;  
+ 
+ 
+    // Shift out all station bit values
+  // from the highest bit to the lowest
+  for(bid=0;bid<=MAX_EXT_BOARDS;bid++) {
+    if (status.enabled)
+    {
+      sbits = station_bits[MAX_EXT_BOARDS-bid];
+    //  DEBUG_PRINT("Valvola abilitata ! :  ");
+    //  DEBUG_PRINTLN(sbits);
+      
+
+    }
+    else
+      sbits = 0;
+
+    for(s=0;s<8;s++) {
+      // massimo
+
+ //     DEBUG_PRINTLN("sono nel loop valvole");
+       //DEBUG_PRINT(station_pins[7-s]);
+       //DEBUG_PRINT(" -> ");
+       //DEBUG_PRINTLN(sbits & ((byte)1<<(7-s)) );
+      pinMode(station_pins[7-s],OUTPUT);
+      digitalWrite(station_pins[7-s], (sbits & ((byte)1<<(7-s))) ? LOW : HIGH );
+    
+    }
+   ;
+
+
+}
+
 #else
 	digitalWrite(PIN_SR_LATCH, LOW);
 	byte bid, s, sbits;
@@ -2589,7 +2622,7 @@ void OpenSprinkler::save_wifi_ip() {
 		memcpy(iopts+IOPT_GATEWAY_IP1, &(WiFi.gatewayIP()[0]),4);
 		memcpy(iopts+IOPT_DNS_IP1, &(WiFi.dnsIP()[0]), 4);
 		memcpy(iopts+IOPT_SUBNET_MASK1, &(WiFi.subnetMask()[0]), 4);
-		iopts_save();
+    iopts_save();
 	}
 }
 

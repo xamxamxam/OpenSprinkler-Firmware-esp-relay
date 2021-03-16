@@ -506,6 +506,7 @@ void do_loop()
 			} else {
 				led_blink_ms = LED_SLOW_BLINK;
 				start_network_sta(os.wifi_ssid.c_str(), os.wifi_pass.c_str());
+				DEBUG_PRINTLN("Tento connessione....");
 				os.config_ip();
 				os.state = OS_STATE_CONNECTING;
 				connecting_timeout = millis() + 120000L;
@@ -531,6 +532,8 @@ void do_loop()
 				os.save_wifi_ip();
 				start_server_client();
 				os.state = OS_STATE_CONNECTED;
+        DEBUG_PRINTLN("Sono connesso....");
+        DEBUG_PRINTLN(IPAddress(WiFi.localIP()[0],WiFi.localIP()[1],WiFi.localIP()[2],WiFi.localIP()[3]));
 				connecting_timeout = 0;
 			} else {
 				if(millis()>connecting_timeout) {
@@ -557,6 +560,7 @@ void do_loop()
 			}
 			else {
 				if(WiFi.status() == WL_CONNECTED) {
+        
 					wifi_server->handleClient();
 					connecting_timeout = 0;
 				} else {

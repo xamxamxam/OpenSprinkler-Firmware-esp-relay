@@ -24,7 +24,7 @@
 #ifndef _DEFINES_H
 #define _DEFINES_H
 
-//#define ENABLE_DEBUG  // enable serial debug
+#define ENABLE_DEBUG  // enable serial debug
 
 typedef unsigned char byte;
 typedef unsigned long ulong;
@@ -247,38 +247,38 @@ enum {
 	#define PIN_FREE_LIST		{2,10,12,13,14,15,18,19}  // Free GPIO pins
 
 	// hardware pins
-	#define PIN_BUTTON_1      31    // button 1
-	#define PIN_BUTTON_2      30    // button 2
-	#define PIN_BUTTON_3      29    // button 3
-	#define PIN_RFTX          28    // RF data pin
+	#define PIN_BUTTON_1      00    // button 1
+	#define PIN_BUTTON_2      00    // button 2
+	#define PIN_BUTTON_3      00    // button 3
+	#define PIN_RFTX          00    // RF data pin
 	#define PORT_RF        PORTA
 	#define PINX_RF        PINA3
-	#define PIN_SR_LATCH       3    // shift register latch pin
-	#define PIN_SR_DATA       21    // shift register data pin
-	#define PIN_SR_CLOCK      22    // shift register clock pin
-	#define PIN_SR_OE          1    // shift register output enable pin
+	#define PIN_SR_LATCH       00    // shift register latch pin
+	#define PIN_SR_DATA       00    // shift register data pin
+	#define PIN_SR_CLOCK      00    // shift register clock pin
+	#define PIN_SR_OE          00    // shift register output enable pin
 
 	// regular 16x2 LCD pin defines
-	#define PIN_LCD_RS        19    // LCD rs pin
-	#define PIN_LCD_EN        18    // LCD enable pin
-	#define PIN_LCD_D4        20    // LCD d4 pin
-	#define PIN_LCD_D5        21    // LCD d5 pin
-	#define PIN_LCD_D6        22    // LCD d6 pin
-	#define PIN_LCD_D7        23    // LCD d7 pin
-	#define PIN_LCD_BACKLIGHT 12    // LCD backlight pin
-	#define PIN_LCD_CONTRAST  13    // LCD contrast pin
+	#define PIN_LCD_RS        00    // LCD rs pin
+	#define PIN_LCD_EN        00    // LCD enable pin
+	#define PIN_LCD_D4        00    // LCD d4 pin
+	#define PIN_LCD_D5        00    // LCD d5 pin
+	#define PIN_LCD_D6        00    // LCD d6 pin
+	#define PIN_LCD_D7        00    // LCD d7 pin
+	#define PIN_LCD_BACKLIGHT 00    // LCD backlight pin
+	#define PIN_LCD_CONTRAST  00    // LCD contrast pin
 
 	// DC controller pin defines
-	#define PIN_BOOST         20    // booster pin
-	#define PIN_BOOST_EN      23    // boost voltage enable pin
+	#define PIN_BOOST         00    // booster pin
+	#define PIN_BOOST_EN      00    // boost voltage enable pin
 
-	#define PIN_ETHER_CS       4    // Ethernet controller chip select pin
-	#define PIN_SENSOR1				11		// 
+	#define PIN_ETHER_CS       0    // Ethernet controller chip select pin
+	#define PIN_SENSOR1				00		// 
 	#define PIN_SD_CS          0    // SD card chip select pin
-	#define PIN_FLOWSENSOR_INT 1    // flow sensor interrupt pin (INT1)
-	#define PIN_EXP_SENSE      4    // expansion board sensing pin (A4)
-	#define PIN_CURR_SENSE     7    // current sensing pin (A7)
-	#define PIN_CURR_DIGITAL  24    // digital pin index for A7
+	#define PIN_FLOWSENSOR_INT 0    // flow sensor interrupt pin (INT1)
+	#define PIN_EXP_SENSE      0    // expansion board sensing pin (A4)
+	#define PIN_CURR_SENSE     0    // current sensing pin (A7)
+	#define PIN_CURR_DIGITAL  00    // digital pin index for A7
 
 	#define ETHER_BUFFER_SIZE   2048
 
@@ -299,11 +299,11 @@ enum {
 	#define EXP_I2CADDR_BASE 0x24 // base of expander I2C address
 	#define LCD_I2CADDR      0x3C // 128x64 OLED display I2C address
 
-	#define PIN_CURR_SENSE    A0
+	#define PIN_CURR_SENSE    00
 	#define PIN_FREE_LIST     {} // no free GPIO pin at the moment
 	#define ETHER_BUFFER_SIZE   2048
 
-	#define PIN_ETHER_CS       16 // ENC28J60 CS (chip select pin) is 16 on OS 3.2.
+	#define PIN_ETHER_CS       00 // ENC28J60 CS (chip select pin) is 16 on OS 3.2.
 
 	/* To accommodate different OS30 versions, we use software defines pins */ 
 	extern byte PIN_BUTTON_1;
@@ -321,59 +321,59 @@ enum {
 	/* Original OS30 pin defines */
 	//#define V0_MAIN_INPUTMASK 0b00001010 // main input pin mask
 	// pins on main PCF8574 IO expander have pin numbers IOEXP_PIN+i
-	#define V0_PIN_BUTTON_1      IOEXP_PIN+1 // button 1
-	#define V0_PIN_BUTTON_2      0           // button 2
-	#define V0_PIN_BUTTON_3      IOEXP_PIN+3 // button 3
-	#define V0_PIN_RFRX          14
-	#define V0_PIN_PWR_RX        IOEXP_PIN+0
-	#define V0_PIN_RFTX          16
-	#define V0_PIN_PWR_TX        IOEXP_PIN+2
-	#define V0_PIN_BOOST         IOEXP_PIN+6
-	#define V0_PIN_BOOST_EN      IOEXP_PIN+7
-	#define V0_PIN_SENSOR1       12 // sensor 1
-	#define V0_PIN_SENSOR2       13 // sensor 2
+	#define V0_PIN_BUTTON_1      1 // button 1
+	#define V0_PIN_BUTTON_2      2           // button 2
+	#define V0_PIN_BUTTON_3      3 // button 3
+	#define V0_PIN_RFRX          00
+	#define V0_PIN_PWR_RX        0
+	#define V0_PIN_RFTX          00
+	#define V0_PIN_PWR_TX        00
+	#define V0_PIN_BOOST         0
+	#define V0_PIN_BOOST_EN      0
+	#define V0_PIN_SENSOR1       00 // sensor 1
+	#define V0_PIN_SENSOR2       0 // sensor 2
 
 	/* OS30 revision 1 pin defines */
 	// pins on PCA9555A IO expander have pin numbers IOEXP_PIN+i
 	#define V1_IO_CONFIG         0x1F00 // config bits
 	#define V1_IO_OUTPUT         0x1F00 // output bits
-	#define V1_PIN_BUTTON_1      IOEXP_PIN+10 // button 1
-	#define V1_PIN_BUTTON_2      IOEXP_PIN+11 // button 2
-	#define V1_PIN_BUTTON_3      IOEXP_PIN+12 // button 3
-	#define V1_PIN_RFRX          14
-	#define V1_PIN_RFTX          16
-	#define V1_PIN_IOEXP_INT     12
-	#define V1_PIN_BOOST         IOEXP_PIN+13
-	#define V1_PIN_BOOST_EN      IOEXP_PIN+14
-	#define V1_PIN_LATCH_COM     IOEXP_PIN+15
-	#define V1_PIN_SENSOR1       IOEXP_PIN+8 // sensor 1
-	#define V1_PIN_SENSOR2       IOEXP_PIN+9 // sensor 2
+	#define V1_PIN_BUTTON_1      0 // button 1
+	#define V1_PIN_BUTTON_2      0 // button 2
+	#define V1_PIN_BUTTON_3      0 // button 3
+	#define V1_PIN_RFRX          00
+	#define V1_PIN_RFTX          00
+	#define V1_PIN_IOEXP_INT     00
+	#define V1_PIN_BOOST         0
+	#define V1_PIN_BOOST_EN      0
+	#define V1_PIN_LATCH_COM     0
+	#define V1_PIN_SENSOR1       0 // sensor 1
+	#define V1_PIN_SENSOR2       0 // sensor 2
 
 	/* OS30 revision 2 pin defines */
 	// pins on PCA9555A IO expander have pin numbers IOEXP_PIN+i
 	#define V2_IO_CONFIG         0x1F00 // config bits
 	#define V2_IO_OUTPUT         0x1F00 // output bits
-	#define V2_PIN_BUTTON_1      2 // button 1
+	#define V2_PIN_BUTTON_1      0 // button 1
 	#define V2_PIN_BUTTON_2      0 // button 2
-	#define V2_PIN_BUTTON_3      IOEXP_PIN+12 // button 3
-	#define V2_PIN_RFTX          15
-	#define V2_PIN_BOOST         IOEXP_PIN+13
-	#define V2_PIN_BOOST_EN      IOEXP_PIN+14
-	#define V2_PIN_LATCH_COM     IOEXP_PIN+15  
-	#define V2_PIN_SENSOR1       3  // sensor 1
-	#define V2_PIN_SENSOR2       10 // sensor 2
+	#define V2_PIN_BUTTON_3      0 // button 3
+	#define V2_PIN_RFTX          00
+	#define V2_PIN_BOOST         0
+	#define V2_PIN_BOOST_EN      0
+	#define V2_PIN_LATCH_COM     0  
+	#define V2_PIN_SENSOR1       0  // sensor 1
+	#define V2_PIN_SENSOR2       00 // sensor 2
 
 #elif defined(OSPI) // for OSPi
 
 	#define OS_HW_VERSION    OSPI_HW_VERSION_BASE
-	#define PIN_SR_LATCH      22    // shift register latch pin
-	#define PIN_SR_DATA       27    // shift register data pin
-	#define PIN_SR_DATA_ALT   21    // shift register data pin (alternative, for RPi 1 rev. 1 boards)
-	#define PIN_SR_CLOCK       4    // shift register clock pin
-	#define PIN_SR_OE         17    // shift register output enable pin
-	#define PIN_SENSOR1				14
-	#define PIN_SENSOR2				23
-	#define PIN_RFTX          15    // RF transmitter pin
+	#define PIN_SR_LATCH      00    // shift register latch pin
+	#define PIN_SR_DATA       00    // shift register data pin
+	#define PIN_SR_DATA_ALT   00    // shift register data pin (alternative, for RPi 1 rev. 1 boards)
+	#define PIN_SR_CLOCK      00    // shift register clock pin
+	#define PIN_SR_OE         00    // shift register output enable pin
+	#define PIN_SENSOR1				00
+	#define PIN_SENSOR2				00
+	#define PIN_RFTX          00    // RF transmitter pin
 	//#define PIN_BUTTON_1      23    // button 1
 	//#define PIN_BUTTON_2      24    // button 2
 	//#define PIN_BUTTON_3      25    // button 3
@@ -386,12 +386,12 @@ enum {
 	#define OS_HW_VERSION    OSBO_HW_VERSION_BASE
 	// these are gpio pin numbers, refer to
 	// https://github.com/mkaczanowski/BeagleBoneBlack-GPIO/blob/master/GPIO/GPIOConst.cpp
-	#define PIN_SR_LATCH      60    // P9_12, shift register latch pin
-	#define PIN_SR_DATA       30    // P9_11, shift register data pin
-	#define PIN_SR_CLOCK      31    // P9_13, shift register clock pin
-	#define PIN_SR_OE         50    // P9_14, shift register output enable pin
-	#define PIN_SENSOR1				48
-	#define PIN_RFTX          51    // RF transmitter pin
+	#define PIN_SR_LATCH      0    // P9_12, shift register latch pin
+	#define PIN_SR_DATA       0    // P9_11, shift register data pin
+	#define PIN_SR_CLOCK      0    // P9_13, shift register clock pin
+	#define PIN_SR_OE         0    // P9_14, shift register output enable pin
+	#define PIN_SENSOR1				0
+	#define PIN_RFTX          0    // RF transmitter pin
 
 	#define PIN_FREE_LIST     {38,39,34,35,45,44,26,47,27,65,63,62,37,36,33,32,61,86,88,87,89,76,77,74,72,73,70,71}
 	#define ETHER_BUFFER_SIZE   16384
@@ -469,7 +469,7 @@ enum {
 // button values
 #define BUTTON_1            0x01
 #define BUTTON_2            0x02
-#define BUTTON_3            0x04
+#define BUTTON_3            0x03
 
 // button status values
 #define BUTTON_NONE         0x00  // no button pressed
