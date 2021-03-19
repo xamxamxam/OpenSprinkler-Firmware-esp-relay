@@ -169,10 +169,19 @@ void ui_state_machine() {
 		switch (button & BUTTON_MASK) {
 		case BUTTON_1:
 			if (button & BUTTON_FLAG_HOLD) {	// holding B1
+				DEBUG_PRINTLN("Pigiato bottone 1");
+					#if defined(ESPGPIO)
+					//massimo
+					// wifi.reset();
+				    os.reset_to_ap();
+					#endif	
 				if (digitalReadExt(PIN_BUTTON_3)==0) { // if B3 is pressed while holding B1, run a short test (internal test)
 					if(!ui_confirm(PSTR("Start 2s test?"))) {ui_state = UI_STATE_DEFAULT; break;}
+					DEBUG_PRINTLN("Pigiato bottone 3");
+				
 					manual_start_program(255, 0);
 				} else if (digitalReadExt(PIN_BUTTON_2)==0) { // if B2 is pressed while holding B1, display gateway IP
+					DEBUG_PRINTLN("Pigiato bottone 2");
 					os.lcd.clear(0, 1);
 					os.lcd.setCursor(0, 0);
 					#if defined(ESP8266)
@@ -186,8 +195,14 @@ void ui_state_machine() {
 				} else {	// if no other button is clicked, stop all zones
 					if(!ui_confirm(PSTR("Stop all zones?"))) {ui_state = UI_STATE_DEFAULT; break;}
 					reset_all_stations();
-				}
+				    os.reset_to_ap();
+					}
 			} else {	// clicking B1: display device IP and port
+				#if defined(ESPGPIO)
+				DEBUG_PRINTLN("Pigiato B1 e restart!!!")
+					ESP.restart();	
+				#endif	
+				
 				os.lcd.clear(0, 1);  
 				os.lcd.setCursor(0, 0);
 				#if defined(ESP8266)

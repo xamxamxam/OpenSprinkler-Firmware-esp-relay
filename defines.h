@@ -24,19 +24,20 @@
 #ifndef _DEFINES_H
 #define _DEFINES_H
 
-// #define ENABLE_DEBUG  // enable serial debug
+ #define ENABLE_DEBUG  // enable serial debug
 
 typedef unsigned char byte;
 typedef unsigned long ulong;
   
 #define TMP_BUFFER_SIZE      255   // scratch buffer size
+#define ESPGPIO
 
 /** Firmware version, hardware version, and maximal values */
 #define OS_FW_VERSION  219  // Firmware version: 220 means 2.2.0
                             // if this number is different from the one stored in non-volatile memory
                             // a device reset will be automatically triggered
 
-#define OS_FW_MINOR      7  // Firmware minor version
+#define OS_FW_MINOR      8  // Firmware minor version
 
 /** Hardware version base numbers */
 #define OS_HW_VERSION_BASE   0x00
@@ -123,7 +124,7 @@ typedef unsigned long ulong;
 
 /** Storage / zone expander defines */
 #if defined(ARDUINO)
-	#define MAX_EXT_BOARDS    8  // maximum number of 8-zone expanders (each 16-zone expander counts as 2)
+	#define MAX_EXT_BOARDS    0  // maximum number of 8-zone expanders (each 16-zone expander counts as 2)
 #else
 	#define MAX_EXT_BOARDS		24 // allow more zones for linux-based firmwares
 #endif
@@ -317,6 +318,13 @@ enum {
 	extern byte PIN_SENSOR1;
 	extern byte PIN_SENSOR2;
 	extern byte PIN_IOEXP_INT;
+// esp with gio
+
+	#define VG_PIN_BUTTON_1      10 // button 1
+	#define VG_PIN_BUTTON_2      0 // button 2
+	#define VG_PIN_BUTTON_3      0 // button 3
+
+
 
 	/* Original OS30 pin defines */
 	//#define V0_MAIN_INPUTMASK 0b00001010 // main input pin mask

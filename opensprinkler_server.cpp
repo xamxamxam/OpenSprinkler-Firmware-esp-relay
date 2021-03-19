@@ -2128,7 +2128,7 @@ ulong getNtpTime() {
 
 	#define NTP_PACKET_SIZE 48
 	#define NTP_PORT 123
-	#define NTP_NTRIES 3
+	#define NTP_NTRIES 8
 
 	static byte packetBuffer[NTP_PACKET_SIZE];
 	byte ntpip[4] = {
@@ -2164,7 +2164,7 @@ ulong getNtpTime() {
 		// end of sendNtpPacket
 		
 		// process response
-		ulong timeout = millis()+1000;
+		ulong timeout = millis()+3000;
 		while(millis() < timeout) {
 			if(udp->parsePacket()) {
 				udp->read(packetBuffer, NTP_PACKET_SIZE);

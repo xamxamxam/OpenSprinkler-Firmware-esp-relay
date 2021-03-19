@@ -771,14 +771,19 @@ void OpenSprinkler::begin() {
 			PIN_SENSOR2 = V2_PIN_SENSOR2;
 		}		 
 	}
-	
 	/* detect expanders */
 	for(byte i=0;i<(MAX_NUM_BOARDS)/2;i++)
 		expanders[i] = NULL;
 	detect_expanders();
+#if defined(ESPGPIO)
+		PIN_BUTTON_1 = VG_PIN_BUTTON_1;
+		PIN_BUTTON_2 = VG_PIN_BUTTON_2;
+		PIN_BUTTON_3 = VG_PIN_BUTTON_3;
+		DEBUG_PRINTLN ("Definisco i bottoni per GPIO");
+#endif
 
 #else
-
+    //massimo
 	// shift register setup
 	pinMode(PIN_SR_OE, OUTPUT);
 	// pull shift register OE high to disable output
@@ -1086,7 +1091,7 @@ void OpenSprinkler::apply_all_station_bits() {
 		
 	byte bid, s, sbits;  
  
- 
+ #if defined(ESPGPIO)
     // Shift out all station bit values
   // from the highest bit to the lowest
   for(bid=0;bid<=MAX_EXT_BOARDS;bid++) {
@@ -1113,7 +1118,7 @@ void OpenSprinkler::apply_all_station_bits() {
     
     }
    ;
-
+#endif
 
 }
 
