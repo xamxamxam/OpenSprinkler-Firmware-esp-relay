@@ -322,9 +322,14 @@ void do_setup() {
 
 	pd.init();						// ProgramData init
 
-	setSyncInterval(RTC_SYNC_INTERVAL);  // RTC sync interval
-	// if rtc exists, sets it as time sync source
-	setSyncProvider(RTC.get);
+	if (RTC.detect()) {
+		setSyncInterval(RTC_SYNC_INTERVAL);  // RTC sync interval
+		// if rtc exists, sets it as time sync source
+		setSyncProvider(RTC.get);
+	}
+	// else no RTC: relying on NTP and for the clock to be somewhat accurate.
+	// May need to reduce NTP interval if the drift is bad
+
 	os.lcd_print_time(os.now_tz());  // display time to LCD
 	os.powerup_lasttime = os.now_tz();
 	
