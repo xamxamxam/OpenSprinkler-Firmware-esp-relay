@@ -79,6 +79,7 @@ typedef unsigned long ulong;
 #define NOTIFY_STATION_ON      0x0100
 
 /** HTTP request macro defines */
+#define HTTP_TIMEOUT          6000  // request timeout in ms
 #define HTTP_RQT_SUCCESS			 0
 #define HTTP_RQT_NOT_RECEIVED -1
 #define HTTP_RQT_CONNECT_ERR	-2
